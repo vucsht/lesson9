@@ -10,7 +10,7 @@
       state: present
 
   - name: Ensure index.html is present
-    lineinfile: dest=/home/vagrant/tmp.txt
+    lineinfile: dest=/var/www/html/index.html
       regexp='^<h1>Welcome to nginx!</h1>'
       line='<p><script> document.write(new Date().toLocaleDateString()); </script></p>'
       state=present
