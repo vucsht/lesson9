@@ -1,0 +1,21 @@
+---
+- name: provisioning nginx
+  hosts: web
+  become:  yes
+
+  tasks:
+  - name: Ensure nginx package is present
+    apt:
+      name: nginx
+      state: present
+
+  - name: Ensure index.html is present
+    lineinfile: dest=/home/vagrant/tmp.txt
+      regexp='^<h1>Welcome to nginx!</h1>'
+      line='<p><script> document.write(new Date().toLocaleDateString()); </script></p>'
+      state=present
+
+  - name: Ensure nginx service is started
+    service:
+      name: nginx
+      state: started
